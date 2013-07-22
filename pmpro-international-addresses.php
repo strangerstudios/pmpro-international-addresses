@@ -11,17 +11,17 @@ Author URI: http://www.strangerstudios.com
 	First we need to enable international addresses. We just use the pmpro_international_addresses hook and return true.
 	This will add a "countries" dropdown to the checkout page.
 */
-function my_pmpro_international_addresses()
+function pmproia_pmpro_international_addresses()
 {
 	return true;
 }
-add_filter("pmpro_international_addresses", "my_pmpro_international_addresses");
+add_filter("pmpro_international_addresses", "pmproia_pmpro_international_addresses");
 
 /*
 	Change some of the billing fields to be not required to support international addresses that don't have a state, etc.
 	Default fields are: bfirstname, blastname, baddress1, bcity, bstate, bzipcode, bphone, bemail, bcountry, CardType, AccountNumber, ExpirationMonth, ExpirationYear, CVV
 */
-function my_pmpro_required_billing_fields($fields)
+function pmproia_pmpro_required_billing_fields($fields)
 {
 	//remove state and zip
 	unset($fields['bstate']);
@@ -29,33 +29,33 @@ function my_pmpro_required_billing_fields($fields)
 	
 	return $fields;
 }
-add_filter("pmpro_required_billing_fields", "my_pmpro_required_billing_fields");
+add_filter("pmpro_required_billing_fields", "pmproia_pmpro_required_billing_fields");
 
 /*
 	Make the city, state, and zip/postal code fields show up on their own lines.
 */
-function my_pmpro_longform_address()
+function pmproia_pmpro_longform_address()
 {
 	return true;
 }
-add_filter("pmpro_longform_address", "my_pmpro_longform_address");
+add_filter("pmpro_longform_address", "pmproia_pmpro_longform_address");
 
 /*
 	(optional) Now we want to change the default country from US to say the United Kingdom (GB)
 	Use the 2-letter acronym.
 */
-function my_pmpro_default_country($default)
+function pmproia_pmpro_default_country($default)
 {	
 	return "GB";
 }
-//add_filter("pmpro_default_country", "my_pmpro_default_country");
+//add_filter("pmpro_default_country", "pmproia_pmpro_default_country");
 
 /*
 	(optional) You may want to add/remove certain countries from the list. The pmpro_countries filter allows you to do this.
 	The array is formatted like array("US"=>"United States", "GB"=>"United Kingdom"); with the acronym as the key and the full
 	country name as the value.
 */
-function my_pmpro_countries($countries)
+function pmproia_pmpro_countries($countries)
 {
 	//remove the US
 	unset($countries["US"]);
@@ -68,4 +68,4 @@ function my_pmpro_countries($countries)
 	
 	return $countries;
 }
-//add_filter("pmpro_countries", "my_pmpro_countries");
+//add_filter("pmpro_countries", "pmproia_pmpro_countries");
